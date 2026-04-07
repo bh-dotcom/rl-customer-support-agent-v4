@@ -1,0 +1,14 @@
+name: rl_customer_support_agent
+version: 1.0.0
+description: RL environment simulating customer support agent
+entry_point: server.app:app
+tasks:
+  - name: simple_query
+    description: Respond to simple queries
+    max_steps: 10
+  - name: complex_query
+    description: Respond to multi-turn queries
+    max_steps: 20
+observation_type: dict
+action_type: dict
+reward_type: float
