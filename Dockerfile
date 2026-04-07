@@ -7,15 +7,12 @@ WORKDIR /app
 # Copy all files
 COPY . .
 
-# Install server dependencies
+# Install server and frontend dependencies
 RUN pip install --no-cache-dir -r server/requirements.txt
-
-# Install frontend dependencies
 RUN pip install --no-cache-dir -r frontend/requirements.txt
 
-# Expose port for FastAPI and Streamlit
-EXPOSE 8000
-EXPOSE 8501
+# Expose ports
+EXPOSE 8000 8501
 
-# Start FastAPI (server) & Streamlit (frontend)
+# Start FastAPI server by default
 CMD ["uvicorn", "server.app:app", "--host", "0.0.0.0", "--port", "8000"]
