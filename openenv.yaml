@@ -1,6 +1,6 @@
 name: rl_customer_support_agent
 version: 1.0.0
-description: RL environment simulating customer support agent
+description: RL environment simulating a customer support task
 entry_point: server.app:app
 tasks:
   - name: simple_query
