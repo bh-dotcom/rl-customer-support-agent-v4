@@ -3,14 +3,14 @@ from pydantic import BaseModel
 
 app = FastAPI()
 
-# ----- Action & Observation Models -----
+# ----- Models -----
 class Action(BaseModel):
     query: str
 
 class Observation(BaseModel):
     state_text: str
 
-# ----- Internal Environment State -----
+# ----- Environment State -----
 current_state = {"state_text": "Welcome to RL Customer Support Agent"}
 
 # ----- OpenEnv API -----
@@ -27,14 +27,14 @@ def reset():
 @app.post("/step")
 def step(action: Action):
     global current_state
-    # Simple logic: echo query & reward 1.0
+    # Simple logic: echo the query
     current_state["state_text"] = f"Agent reply: {action.query}"
     reward = 1.0
     done = False
     info = {}
     return {"observation": current_state, "reward": reward, "done": done, "info": info}
 
-# ----- Health check -----
+# ----- Health Check -----
 @app.get("/")
 def health():
     return {"message": "RL Customer Support Agent Server Running"}
